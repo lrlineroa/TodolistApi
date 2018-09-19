@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  list: one
+  user: one
+  is_owner: false
+  visible: false
+  can_edit: false
+
+two:
+  list: two
+  user: two
+  is_owner: false
+  visible: false
+  can_edit: false
