@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user
+  before_action :set_list
   before_action :set_task, only: [:show, :update, :destroy]
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = @list.tasks.all
 
     render json: @tasks
   end
@@ -15,9 +17,9 @@ class TasksController < ApplicationController
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
+    @task = @list.tasks().create(task_params)
 
-    if @task.save
+    if @task.valid?
       render json: @task, status: :created, location: @task
     else
       render json: @task.errors, status: :unprocessable_entity
@@ -41,7 +43,11 @@ class TasksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      @task = @list.tasks.find(params[:id])
+    end
+
+    def set_list
+      @list=List.find(params[:list_id])
     end
 
     # Only allow a trusted parameter "white list" through.
