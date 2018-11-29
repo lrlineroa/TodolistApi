@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   post 'user_token' => 'user_token#create'
-  resources :tasks
+  resources :lists do
+    resources :tasks
+  end
   resources :states
   resources :users do
     resources :lists
