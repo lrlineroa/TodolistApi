@@ -37,6 +37,7 @@ class TasksController < ApplicationController
 
   # DELETE /tasks/1
   def destroy
+    @list.tasks.destroy(@task)
     @task.destroy
   end
 
