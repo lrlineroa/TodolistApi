@@ -9,6 +9,6 @@
 # Role.create(role: 'admin')
 # Role.create(role: 'user')
 
-State.create(state: 'Uncompleted')
-State.create(state: 'Completed')
-State.create(state: 'Suspended')
+# State.create(state: 'Uncompleted')
+# State.create(state: 'Completed')
+# State.create(state: 'Suspended')

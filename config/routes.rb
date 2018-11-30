@@ -3,10 +3,14 @@ Rails.application.routes.draw do
   resources :lists do
     resources :tasks
   end
+  
   resources :states
   resources :users do
     resources :lists
+    resources :tasks, only:[:create] do
+      resources :states, only:[:create]
     end
+  end
     
   resources :users
   get '/' => "front#index"
