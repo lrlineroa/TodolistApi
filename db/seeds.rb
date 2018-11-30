@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Role.create(role: 'admin')
-Role.create(role: 'user')
+# Role.create(role: 'admin')
+# Role.create(role: 'user')
 
 State.create(state: 'Uncompleted')
 State.create(state: 'Completed')
