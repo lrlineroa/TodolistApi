@@ -18,6 +18,7 @@ class ListsController < ApplicationController
 
   # POST /lists
   def create
+    
     @list = @user.lists().create(list_params)
     @user.users_lists().where("list_id = ?",@list.id).first.update({is_owner: 1,
       visible: 1,
