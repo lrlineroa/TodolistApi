@@ -7,12 +7,10 @@ Rails.application.routes.draw do
   resources :states
   resources :users do
     resources :lists
-    resources :tasks, only:[:create] do
-      resources :states, only:[:create]
-    end
   end
     
   resources :users
+  post 'users/:user_id/tasks/:task_id/states/:state_id',to:'tasks#changeState'
   get '/' => "front#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

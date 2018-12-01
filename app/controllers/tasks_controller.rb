@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :authenticate_user
-  before_action :set_list
+  before_action :set_list, except:[:changeState]
   before_action :set_task, only: [:show, :update, :destroy]
 
   # GET /tasks
@@ -39,6 +39,18 @@ class TasksController < ApplicationController
   def destroy
     @list.tasks.destroy(@task)
     @task.destroy
+  end
+
+  def changeState
+    @user=User.find(params[:user_id])
+    @task=Task.find(params[:task_id])
+    @state=State.find(params[:state_id])
+    @log=Log.create(user:@user,task:@task,state:@state)
+    if @log.valid?
+      return plain: :hecho
+    else
+      render json: @task.errors, status: :unprocessable_entity
+    end
   end
 
   private
