@@ -47,7 +47,7 @@ class TasksController < ApplicationController
     @state=State.find(params[:state_id])
     @log=Log.create(user:@user,task:@task,state:@state)
     if @log.valid?
-      return plain: :hecho
+      render plain: 'Hecho'
     else
       render json: @task.errors, status: :unprocessable_entity
     end
