@@ -7,7 +7,7 @@ class TasksController < ApplicationController
   def index
     @tasks = @list.tasks.all
 
-    render json: @tasks
+    render json: @tasks,include: ['states','users']
   end
 
   # GET /tasks/1
