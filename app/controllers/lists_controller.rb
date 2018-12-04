@@ -65,7 +65,7 @@ class ListsController < ApplicationController
         list=List.find(list_id)
         record=UsersList.create(list: list, user: guest)
       end
-      if type=="visible"
+      if typeGrant=="visible"
         record.update({
           visible: value
         })
@@ -75,7 +75,7 @@ class ListsController < ApplicationController
           record.destroy()
           render json: record, status: :ok
         end
-      elsif type=="can_edit"
+      elsif typeGrant=="can_edit"
         record.update({
             can_edit: value
           })
