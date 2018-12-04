@@ -59,7 +59,7 @@ class ListsController < ApplicationController
     if record != nil
       guest=User.find(guestId);
       #vamos a buscar si el owner ya le ha compartido antes la lista
-      record= user.users_lists().where("list_id= ? ",listId).first
+      record= guest.users_lists().where("list_id= ? ",listId).first
       #si hay una asociaci'on la actualizamos si no la creamos
       unless record != nil
         list=List.find(list_id)
