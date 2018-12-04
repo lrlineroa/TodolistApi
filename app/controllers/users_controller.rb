@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     @users = User.includes(:users_lists)
     @users.each do |user|
       user.users_lists.each do |ul|
+        logger.debug ul.visible
         ul.visible
       end
       
