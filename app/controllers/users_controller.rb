@@ -11,8 +11,9 @@ class UsersController < ApplicationController
 
   def getUsersForSharingList
     sharingListId=params["list_id"]
-    @users = User.includes(:users_lists).all
-    # @users.each do |user|
+    @users = User.includes(:users_lists)
+    @users.each do |user|
+     user.users_lists
     #   class << user
     #     attr_accessor :canEdit
     #     attr_accessor :canView
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
     #     user.canEdit =record.visible;
     #     user.canView =record.can_edit;
     #   end
-    # end
+    end
     render json: @users
   end
 
