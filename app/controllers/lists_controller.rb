@@ -62,7 +62,7 @@ class ListsController < ApplicationController
       record= guest.users_lists().where("list_id= ? ",listId).first
       #si hay una asociaci'on la actualizamos si no la creamos
       unless record != nil
-        list=List.find(list_id)
+        list=List.find(listId)
         record=UsersList.create(list: list, user: guest)
       end
       if typeGrant=="visible"
