@@ -71,7 +71,7 @@ class ListsController < ApplicationController
         })
         #si no se puede ver por lo tanto tampoco se puede editar
         #entonces se elimina el registro
-        if value==0
+        if !value
           record.destroy()
           render json: record, status: :ok
         end
@@ -80,7 +80,7 @@ class ListsController < ApplicationController
             can_edit: value
           })
         #si puede editar por consiguiente tambien puede ver
-        if value==1
+        if value
           record.update({
             visible: 1
           })
