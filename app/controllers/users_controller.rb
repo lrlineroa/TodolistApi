@@ -13,7 +13,13 @@ class UsersController < ApplicationController
     sharingListId=params["list_id"]
     @users = User.all
     @users.each do |user|
+      class << user
+        attr_accessor :canEdit
+        attr_accessor :canView
+      end
+      a.age = new_age_value
       record=user.users_lists().where("list_id = ?",sharingListId).first
+      
       if record==nil
         user.canEdit = false;
         user.canView = false;
