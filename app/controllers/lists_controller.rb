@@ -78,7 +78,7 @@ class ListsController < ApplicationController
             can_edit: 0
           })
           record.destroy()
-          
+          render json: {user_id: guestId,can_edit: false,visible: false} ,status: :ok
         end
       elsif typeGrant=="can_edit"
         record.update({
