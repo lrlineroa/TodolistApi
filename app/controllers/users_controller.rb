@@ -15,11 +15,11 @@ class UsersController < ApplicationController
     @users.each do |user|
       record=user.users_lists().where("list_id = ?",sharingListId).first
       if record==nil
-        user.attributes["canEdit"]=false;
-        user.attributes["canView"]=false;
+        user.canEdit = false;
+        user.canView = false;
       else
-        user.attributes["canEdit"]=record.visible;
-        user.attributes["canView"]=record.can_edit;
+        user.canEdit =record.visible;
+        user.canView =record.can_edit;
       end
     end
     render json: @users
