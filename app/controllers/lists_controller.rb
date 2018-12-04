@@ -72,6 +72,7 @@ class ListsController < ApplicationController
         #si no se puede ver por lo tanto tampoco se puede editar
         #entonces se elimina el registro
         if !value
+          logger.debug 'entrooooooooo y se va a eliminar el registro'
           record.destroy()
           render json: record, status: :ok
         end
