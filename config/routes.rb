@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :users
   post 'users/:user_id/tasks/:task_id/states/:state_id',to:'tasks#changeState'
   get '/' => "front#index"
+
+  post "users/:user_id/lists/:list_id/guest/:guest_id/:type/:value", to: 'lists#configShares'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

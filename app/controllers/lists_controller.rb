@@ -46,6 +46,52 @@ class ListsController < ApplicationController
     @list.destroy()
   end
 
+  def configShares
+    ownerId=params["user_id"]
+    listId=params["list_id"]
+    guestId=params["guest_id"]
+    typeGrant=params["type"]
+    value=params["value"]
+    #buscamos primero el usuario propietario
+    user=User.find(ownerId);
+    #buscamos el registro en la tabla auxiliar
+    record= user.users_lists().where("list_id= ? and is_owner= ?",listId,true).first
+    if record != nil
+      guest=User.find(guestId);
+      #vamos a buscar si el owner ya le ha compartido antes la lista
+      record= user.users_lists().where("list_id= ? ",listId).first
+      #si hay una asociaci'on la actualizamos si no la creamos
+      unless record != nil
+        list=List.find(list_id)
+        record=UsersList.create(list: list, user: guest)
+      end
+      if type=="visible"
+        record.update({
+          visible: value
+        })
+        #si no se puede ver por lo tanto tampoco se puede editar
+        #entonces se elimina el registro
+        if value==0
+          record.destroy
+          return json: record, status: :ok
+        end
+      elsif type=="can_edit"
+        record.update({
+            can_edit: value
+          })
+        #si puede editar por consiguiente tambien puede ver
+        if value==1
+          record.update({
+            visible: 1
+          })
+        end
+      end 
+      return json: record, status: :ok
+    else
+      render json: {status: "UNSUCCES", message: "no hay listas para el propietario" },status: :not_found
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_list
