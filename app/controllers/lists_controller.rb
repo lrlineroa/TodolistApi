@@ -51,7 +51,7 @@ class ListsController < ApplicationController
     listId=params["list_id"]
     guestId=params["guest_id"]
     typeGrant=params["type"]
-    value=params["value"]
+    value=params["value"].to_i
     #buscamos primero el usuario propietario
     user=User.find(ownerId);
     #buscamos el registro en la tabla auxiliar
