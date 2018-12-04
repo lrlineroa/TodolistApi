@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     sharingListId=params["list_id"]
     @users = User.includes(:users_lists)
     @users.each do |user|
-      user.users_list.each do |ul|
+      user.users_lists.each do |ul|
         ul.visible
       end
       
