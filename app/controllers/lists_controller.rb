@@ -74,8 +74,11 @@ class ListsController < ApplicationController
         logger.debug 'el valor es ' +value.to_s
         if value==0
           logger.debug 'entrooooooooo y se va a eliminar el registro'
+          record.update({
+            can_edit: 0
+          })
           record.destroy()
-          render json: record, status: :ok
+          
         end
       elsif typeGrant=="can_edit"
         record.update({
