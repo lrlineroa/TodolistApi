@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         attr_accessor :canEdit
         attr_accessor :canView
       end
-      a.age = new_age_value
+      
       record=user.users_lists().where("list_id = ?",sharingListId).first
       
       if record==nil
