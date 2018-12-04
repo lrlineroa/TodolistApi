@@ -9,6 +9,22 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  def getUsersForSharingList
+    sharingListId=params["list_id"]
+    @users = User.all
+    @users.each do |user|
+      record=user.users_lists().where("list_id = ?",sharingListId).first
+      if record==nil
+        user.canEdit=false;
+        user.canView=false;
+      else
+        user.canEdit=record.visible;
+        user.canView=record.can_edit;
+      end
+    end
+    render json: @users
+  end
+
   # GET /users/1
   def show
     render json: @user
