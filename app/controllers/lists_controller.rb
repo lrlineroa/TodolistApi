@@ -73,7 +73,7 @@ class ListsController < ApplicationController
         #entonces se elimina el registro
         if value==0
           record.destroy()
-          return json: record
+          render json: record, status: :ok
         end
       elsif type=="can_edit"
         record.update({
@@ -86,7 +86,7 @@ class ListsController < ApplicationController
           })
         end
       end 
-      return json: record
+      render json: record, status: :ok
     else
       render json: {status: "UNSUCCES", message: "no hay listas para el propietario" },status: :not_found
     end
