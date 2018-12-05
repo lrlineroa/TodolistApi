@@ -13,11 +13,11 @@ class UsersController < ApplicationController
     sharingListId=params["list_id"]
     @users = User.includes(:users_lists)
     @users.each do |user|
-      user.users_lists.each do |ul|
-        logger.debug ul.visible
-        ul.visible
-      end
-      
+      # user.users_lists.each do |ul|
+      #   logger.debug ul.visible
+      #   ul.visible
+      # end
+      user.users_lists = user.users_lists
     #   class << user
     #     attr_accessor :canEdit
     #     attr_accessor :canView
