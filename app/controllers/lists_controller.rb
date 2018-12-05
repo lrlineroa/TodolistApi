@@ -6,9 +6,7 @@ class ListsController < ApplicationController
   # GET /lists
   def index
     @lists =@user.lists.all 
-    
-
-    render json: @lists, include: ['users_lists']
+    render json: @lists, include: ['users_lists','users']
   end
 
   # GET /lists/1
