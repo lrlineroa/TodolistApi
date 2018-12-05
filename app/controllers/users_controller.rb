@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     # #     user.canView =record.can_edit;
     # #   end
     end
-    render json: @users, include: [users_lists]
+    render json: @users, include: ['users_lists']
   end
 
   # GET /users/1
