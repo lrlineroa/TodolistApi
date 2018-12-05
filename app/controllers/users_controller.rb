@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     # #     user.canEdit =record.visible;
     # #     user.canView =record.can_edit;
     # #   end
-    end
+    #end
     render json: @users, include: ['users_lists']
   end
 
