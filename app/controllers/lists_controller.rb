@@ -8,7 +8,7 @@ class ListsController < ApplicationController
     @lists =@user.lists.all 
     
 
-    render json: @lists
+    render json: @lists, include: ['users_lists']
   end
 
   # GET /lists/1
